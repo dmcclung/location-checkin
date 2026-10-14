@@ -1,0 +1,45 @@
+type User @entity(immutable: false) {
+  "The user's address"
+  id: Bytes!
+  dropPoints: BigInt!
+  lastBlockAwarded: BigInt!
+  drops: [Drop!]! @derivedFrom(field: "creator")
+}
+
+type Location @entity(immutable: false) {
+  "The on-chain location id"
+  id: ID!
+  "Decimal degrees * 1e6, negative for south"
+  latE6: Int!
+  "Decimal degrees * 1e6, negative for west"
+  lonE6: Int!
+  creator: Bytes!
+  name: String!
+  description: String!
+  imageUrl: String!
+  verified: Boolean!
+  hidden: Boolean!
+  drops: [Drop!]! @derivedFrom(field: "location")
+}
+
+type Drop @entity(immutable: false) {
+  "The on-chain drop id"
+  id: ID!
+  location: Location!
+  creator: User!
+  message: String!
+  blockNumber: BigInt!
+  createdAt: BigInt!
+  approvedClaimer: Bytes
+  claimedBy: Bytes
+  proofs: [Proof!]! @derivedFrom(field: "drop")
+}
+
+type Proof @entity(immutable: true) {
+  id: Bytes!
+  drop: Drop!
+  user: Bytes!
+  proofUri: String!
+  createdAt: BigInt!
+  transactionHash: Bytes!
+}

@@ -1,0 +1,39 @@
+specVersion: 1.3.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: LocationDrop
+    network: localhost
+    source:
+      abi: LocationDrop
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Location
+        - Drop
+        - Proof
+      abis:
+        - name: LocationDrop
+          file: ./abis/LocationDrop.json
+      eventHandlers:
+        - event: UserUpdated(indexed address)
+          handler: handleUserUpdated
+        - event: LocationUpdated(indexed uint256)
+          handler: handleLocationUpdated
+        - event: DropMinted(indexed uint256,indexed uint256,indexed address)
+          handler: handleDropMinted
+        - event: ProofCreated(indexed uint256,indexed address,string)
+          handler: handleProofCreated
+        - event: ClaimApproved(indexed uint256,indexed address)
+          handler: handleClaimApproved
+        - event: DropClaimed(indexed uint256,indexed address)
+          handler: handleDropClaimed
+      file: ./src/mapping.ts

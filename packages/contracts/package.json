@@ -1,0 +1,28 @@
+{
+  "name": "@location-checkin/contracts",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    "./abi": "./generated/abi.ts"
+  },
+  "scripts": {
+    "build": "hardhat build && node scripts/export-abi.ts",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy:local": "hardhat ignition deploy ignition/modules/LocationDrop.ts --network localhost",
+    "deploy:sepolia": "hardhat ignition deploy ignition/modules/LocationDrop.ts --network sepolia --verify",
+    "seed:local": "hardhat run scripts/seed.ts --network localhost"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ignition": "^3.1.8",
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.7",
+    "@types/node": "^24.19.2",
+    "hardhat": "^3.19.0",
+    "typescript": "~6.0.3",
+    "viem": "^2.57.5"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.6.1"
+  }
+}

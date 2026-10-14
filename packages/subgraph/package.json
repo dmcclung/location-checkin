@@ -1,0 +1,19 @@
+{
+  "name": "@location-checkin/subgraph",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph codegen && graph build",
+    "deploy": "graph deploy location-checkin",
+    "create-local": "graph create --node http://localhost:8020/ location-checkin",
+    "remove-local": "graph remove --node http://localhost:8020/ location-checkin",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 location-checkin --network localhost"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-ts": "^0.38.2"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.98.1"
+  }
+}

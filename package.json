@@ -1,0 +1,24 @@
+{
+  "name": "location-checkin",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write .",
+    "node": "npm run node -w @location-checkin/contracts",
+    "dev": "npm run dev -w @location-checkin/web"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10",
+    "prettier-plugin-solidity": "^2.4.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
